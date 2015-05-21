@@ -1,0 +1,21 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: puppet_apply
+  manifests_path: manifests
+  modules_path: modules
+  files_path: test/shared
+
+platforms:
+  - name: ubuntu
+    driver_config:
+      image: ubuntu:12.04
+      socket: <%= ENV['DOCKER_HOST'] %>
+      use_cache: true
+      dockerfile: ubuntu12.04-dockerfile
+
+suites:
+  - name: logstash-cli
+  - name: logstash-config

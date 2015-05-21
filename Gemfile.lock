@@ -1,0 +1,71 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (2.2.8)
+    builder (3.2.2)
+    diff-lcs (1.2.5)
+    facter (2.4.3)
+      CFPropertyList (~> 2.2.6)
+    hiera (2.0.0)
+      json_pure
+    json_pure (1.8.2)
+    kitchen-docker (2.1.0)
+      test-kitchen (>= 1.0.0)
+    kitchen-puppet (0.0.27)
+    mixlib-shellout (2.0.1)
+    multi_json (1.11.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
+    puppet (4.0.0)
+      facter (> 2.0, < 4)
+      hiera (>= 2.0, < 3)
+      json_pure
+    rake (10.4.2)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+    rspec-core (3.2.3)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-its (1.2.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
+    rspec_junit_formatter (0.2.2)
+      builder (< 4)
+      rspec-core (>= 2, < 4, != 2.12.0)
+    safe_yaml (1.0.4)
+    serverspec (2.17.0)
+      multi_json
+      rspec (~> 3.0)
+      rspec-its
+      specinfra (~> 2.32)
+    specinfra (2.32.0)
+      net-scp
+      net-ssh
+    test-kitchen (1.4.0)
+      mixlib-shellout (>= 1.2, < 3.0)
+      net-scp (~> 1.1)
+      net-ssh (~> 2.7)
+      safe_yaml (~> 1.0)
+      thor (~> 0.18)
+    thor (0.19.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  kitchen-docker
+  kitchen-puppet
+  puppet
+  rake
+  rspec_junit_formatter
+  serverspec
+  test-kitchen
