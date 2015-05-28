@@ -78,3 +78,13 @@ def raw_command(cmd, verbose = nil)
     end
   end
 end
+
+def launch_logstash(cmd)
+  pid = fork do
+    exec cmd
+  end
+
+  Process.detach(pid)
+  sleep(30)
+  Process.kill("INT", pid)
+end

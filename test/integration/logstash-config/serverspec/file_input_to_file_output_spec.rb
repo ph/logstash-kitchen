@@ -7,16 +7,10 @@ describe "File input to File output" do
   let(:output_file) { "/tmp/out.log" }
 
   before :all do
-    config = 'input { file { path => "/tmp/kitchen/files/sample.log" start_position => "beginning" } } output { file { path => "/tmp/out.log" } }'
+    config = 'input { file { path => "/tmp/kitchen/files/sample.log" stat_interval => 0 start_position => "beginning" } } output { file { path => "/tmp/out.log" } }'
     cmd = "/opt/logstash/bin/logstash -e '#{config}'"
 
-    pid = fork do
-      exec cmd
-    end
-
-    Process.detach(pid)
-    sleep(30)
-    Process.kill("INT", pid)
+    launch_logstash(cmd)
   end
 
   it "creates an output file" do
@@ -24,9 +18,9 @@ describe "File input to File output" do
   end
 
   it "writes events to file" do
-    expect(IO.readlines(output_file).size).to be > 40
-    # Because of the signal logic and shutdown not all events are written to disk
-    # expect(IO.readlines(output_file).size).to eq(number_of_events)
+    # We have to set a 0 stat interval to have the right number of events
+    # on shutdown the events arent flushed to disk correctly
+    expect(IO.readlines(output_file).size).to eq(number_of_events)
   end
 end
 
