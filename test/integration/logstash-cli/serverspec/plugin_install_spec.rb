@@ -18,11 +18,7 @@ context "bin/plugin install" do
       its(:stdout) { is_expected.to match(/Installation successful/) }
     end
 
-    describe "install a specific version" do
-      let(:version) { LogStashTestHelpers::random_previous_version(plugin) }
-
-      subject { command("/opt/logstash/bin/plugin install --version 0.1.6 logstash-input-drupal_dblog") }
-
+    describe command("/opt/logstash/bin/plugin install --version 0.1.6 logstash-input-drupal_dblog") do
       its(:exit_status) { is_expected.to eq(0) }
       its(:stdout) { is_expected.to match(/^Installing logstash-input-drupal_dblog/) }
       its(:stdout) { is_expected.to match(/Installation successful/) }
@@ -32,7 +28,6 @@ context "bin/plugin install" do
   context "when the plugin doesn't exist" do
     describe command("/opt/logstash/bin/plugin install logstash-output-impossible-plugin") do
       its(:exit_status) { is_expected.to eq(1) }
-
       its(:stdout) { is_expected.to match(/Plugin logstash-output-impossible-plugin does not exist/) }
 
       describe command("/opt/logstash/bin/plugin list logstash-output-impossible-plugin") do
