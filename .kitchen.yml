@@ -1,6 +1,8 @@
 ---
 driver:
   name: docker
+busser:
+  sudo: true
 
 provisioner:
   name: puppet_apply
@@ -18,4 +20,4 @@ platforms:
 
 suites:
   - name: logstash-cli
-  - name: logstash-config
+  # - name: logstash-config
