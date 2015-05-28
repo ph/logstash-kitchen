@@ -1,6 +1,7 @@
 ---
 driver:
   name: docker
+  binary: /usr/bin/docker 
 busser:
   sudo: true
 
