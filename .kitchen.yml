@@ -16,8 +16,8 @@ platforms:
       image: ubuntu:12.04
       socket: <%= ENV['DOCKER_HOST'] %>
       use_cache: true
-      dockerfile: ubuntu12.04-dockerfile
+      dockerfile: docker/ubuntu12.04-dockerfile
 
 suites:
   - name: logstash-cli
-  # - name: logstash-config
+  - name: logstash-config
