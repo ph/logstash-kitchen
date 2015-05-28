@@ -14,7 +14,7 @@ describe "update" do
     end
 
     it "display a success message" do
-      expect(subject.stdout).to match(/^Installation #{plugin} \([^#{LogStashTestHelpers.latest_version(plugin)}]\)/)
+      expect(subject.stdout).to match(/Installation #{plugin} \([^#{LogStashTestHelpers.latest_version(plugin)}]\)/)
     end
   end
 
@@ -26,7 +26,7 @@ describe "update" do
     end
 
     it "display a success message" do
-      expect(subject.stdout).to match(/^Installation #{plugin} \([^#{LogStashTestHelpers.latest_version(plugin)}]\)/)
+      expect(subject.stdout).to match(/^Updated #{plugin} #{previous_version} to \([^#{LogStashTestHelpers.latest_version(plugin)}]\)/)
     end
   end
 end
