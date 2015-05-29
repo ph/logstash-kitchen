@@ -24,8 +24,8 @@ describe "update" do
       expect(subject.exit_status).to eq(0)
     end
 
-    it "display a success message" do
-      expect(subject.stdout).to match(/Updated #{plugin} #{previous_version} to #{LogStashTestHelpers.latest_version(plugin)}/)
+    it "correctly install the specified version" do
+      expect(command("/opt/logstash/bin/plugin list --verbose logstash-input-stdin").stdout).to match("logstash-input-stdin (#{LogStashTestHelpers.latest_version(plugin)})")
     end
   end
 end
