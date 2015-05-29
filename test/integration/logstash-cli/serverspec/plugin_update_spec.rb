@@ -20,6 +20,9 @@ describe "update" do
 
   context command("/opt/logstash/bin/plugin update") do
     it "has executed succesfully" do
+      puts "---------"
+      puts subject.stdout
+      puts "---------"
       expect(subject.exit_status).to eq(0)
     end
 
