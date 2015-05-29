@@ -21,7 +21,7 @@ platforms:
       dockerfile: docker/ubuntu12.04-dockerfile
     provisioner:
       custom_facts:
-        logstash_package: http://download.elastic.co/logstash/logstash/logstash-1.5.0.tar.gz 
+        logstash_package: <%= ENV['LOGSTASH_PACKAGE_URL'] || "http://download.elastic.co/logstash/logstash/logstash-1.5.0.tar.gz" %>
 
 suites:
   - name: logstash-cli
