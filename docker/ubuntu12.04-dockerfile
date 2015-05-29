@@ -8,12 +8,6 @@ RUN ln -sf /bin/true /sbin/initctl
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y update
 RUN apt-get install -y sudo openssh-server curl lsb-release openjdk-7-jdk wget
-RUN wget --no-verbose http://download.elastic.co/logstash/logstash/logstash-1.5.0.tar.gz
-RUN tar -zxf logstash-1.5.0.tar.gz
-RUN rm -rf *.tar.gz
-RUN mkdir -p /opt
-RUN mv logstash* logstash
-RUN mv logstash /opt/
 
 ## Add Test-Kitchen Dependencies
 RUN useradd -d /home/kitchen -m -s /bin/bash kitchen

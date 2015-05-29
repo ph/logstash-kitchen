@@ -14,11 +14,14 @@ provisioner:
   files_path: test/shared
 
 platforms:
-  - name: ubuntu
+  - name: ubuntu-logstash-tgz
     driver_config:
       image: ubuntu:12.04
       use_cache: true
       dockerfile: docker/ubuntu12.04-dockerfile
+    provisioner:
+      custom_facts:
+        logstash_package: http://download.elastic.co/logstash/logstash/logstash-1.5.0.tar.gz 
 
 suites:
   - name: logstash-cli
