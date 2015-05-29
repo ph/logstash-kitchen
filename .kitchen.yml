@@ -3,6 +3,7 @@ driver:
   name: docker
   binary: /usr/bin/docker
   use_sudo: false
+  socker: <%= ENV['DOCKER_HOST'] %>
 busser:
   sudo: true
 
