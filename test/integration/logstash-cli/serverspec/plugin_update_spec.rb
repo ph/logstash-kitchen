@@ -4,7 +4,7 @@ describe "update" do
   let(:plugin) { "logstash-input-stdin" }
   let(:previous_version) { "0.1.5" }
 
-  before do
+  before :each do
     raw_command("/opt/logstash/bin/plugin install --version #{previous_version} #{plugin}")
   end
 
@@ -18,9 +18,7 @@ describe "update" do
     end
   end
 
-  context "without specifying a plugin" do
-    subject { command("/opt/logstash/bin/plugin update") }
-
+  context command("/opt/logstash/bin/plugin update") do
     it "has executed succesfully" do
       expect(subject.exit_status).to eq(0)
     end
