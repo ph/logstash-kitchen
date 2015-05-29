@@ -1,7 +1,7 @@
 ---
 driver:
   name: docker
-  binary: /usr/bin/docker
+  binary: <%= `which docker` %>
   use_sudo: false
   socker: <%= ENV['DOCKER_HOST'] %>
 busser:
