@@ -1,7 +1,8 @@
 ---
 driver:
   name: docker
-  binary: <%=`which docker` %>
+  binary: /usr/bin/docker
+  use_sudo: false
 busser:
   sudo: true
 
@@ -15,7 +16,6 @@ platforms:
   - name: ubuntu
     driver_config:
       image: ubuntu:12.04
-      socket: <%= ENV['DOCKER_HOST'] %>
       use_cache: true
       dockerfile: docker/ubuntu12.04-dockerfile
 
