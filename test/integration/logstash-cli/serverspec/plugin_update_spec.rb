@@ -4,28 +4,28 @@ describe "update" do
   let(:plugin) { "logstash-input-stdin" }
   let(:previous_version) { "0.1.5" }
 
-  before :each do
+  before do
     raw_command("/opt/logstash/bin/plugin install --version #{previous_version} #{plugin}")
+    cmd = command("/opt/logstash/bin/plugin list --verbose logstash-input-stdin")
+    expect(cmd.stdout).to match(/#{plugin} \(#{previous_version}\)/)
   end
 
-  context command("/opt/logstash/bin/plugin update logstash-input-stdin") do
+  context "update a specific plugin" do
+    subject { command("/opt/logstash/bin/plugin update logstash-input-stdin") }
+
     it "has executed succesfully" do
       expect(subject.exit_status).to eq(0)
-    end
-
-    it "display a success message" do
       expect(subject.stdout).to match(/Updating #{plugin}/)
     end
   end
 
-  context command("/opt/logstash/bin/plugin update") do
-    it "has executed succesfully" do
-      subject.stdout
-      expect(subject.exit_status).to eq(0)
-    end
+  context "update all the plugins" do
+    subject { command("/opt/logstash/bin/plugin update") }
 
-    it "correctly install the specified version" do
-      expect(command("/opt/logstash/bin/plugin list --verbose logstash-input-stdin").stdout).to match("logstash-input-stdin (#{LogStashTestHelpers.latest_version(plugin)})")
+    it "has executed succesfully" do
+      expect(subject.exit_status).to eq(0)
+      cmd = command("/opt/logstash/bin/plugin list --verbose logstash-input-stdin").stdout
+      expect(cmd).to match(/logstash-input-stdin \(#{LogStashTestHelpers.latest_version(plugin)}\)/)
     end
   end
 end
