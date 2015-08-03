@@ -28,10 +28,10 @@ context "bin/plugin install" do
   context "when the plugin doesn't exist" do
     describe command("/opt/logstash/bin/plugin install logstash-output-impossible-plugin") do
       its(:exit_status) { is_expected.to eq(1) }
-      its(:stdout) { is_expected.to match(/Plugin logstash-output-impossible-plugin does not exist/) }
+      its(:stderr) { is_expected.to match(/Plugin logstash-output-impossible-plugin does not exist/) }
 
       describe command("/opt/logstash/bin/plugin list logstash-output-impossible-plugin") do
-        its(:stdout) { is_expected.to match(/No plugins found/) }
+        its(:stderr) { is_expected.to match(/No plugins found/) }
       end
     end
   end
